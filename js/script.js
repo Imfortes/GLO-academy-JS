@@ -7,9 +7,9 @@ window.addEventListener('DOMContentLoaded', () => {
         goodsBtn = document.querySelectorAll('.goods__btn'),
         products = document.querySelectorAll('.goods__item'),
         confirm = document.querySelector('.confirm'),
-        badge = document.querySelectorAll('.nav__badge'),
+        badge = document.querySelector('.nav__badge'),
         totalCost = document.querySelector('.cart__total > span'),
-        titles = document.querySelectorAll('goods__title');
+        titles = document.querySelectorAll('.goods__title');
 
     function openCart() {
         cart.style.display = 'block';
@@ -41,23 +41,24 @@ window.addEventListener('DOMContentLoaded', () => {
             item.appendChild(removeBtn);
 
             cartWrapper.appendChild(item);
-
             if (empty) {
                 empty.remove();
             }
 
             calcTotal();
+            removeFromCart();
         });
     });
 
 
     function sliceTitle(){
-        titles.forEach(function (item) {
+        titles.forEach(function(item) {
             if (item.textContent.length < 70){
                 return;
             } else {
+                const str = item.textContent.slice(0, 71) + '...';
                 // const str = `${item.textContent.slice(0, 71)} ...`;
-                item.textContent = item.textContent.slice(0, 71) + '...';
+                item.textContent = str;
             }
         })
     }
@@ -66,7 +67,7 @@ window.addEventListener('DOMContentLoaded', () => {
     function showConfirm() {
         confirm.style.display = 'block';
         let counter = 100;
-        const id = setInterval(frame(), 10);
+        const id = setInterval(frame, 10);
         function frame() {
             if (counter == 10) {
                 clearInterval(id);
@@ -92,6 +93,17 @@ window.addEventListener('DOMContentLoaded', () => {
             total += +item.textContent;
         });
         totalCost.textContent = total;
+    }
+
+    function removeFromCart() {
+        const removeBtn = cartWrapper.querySelectorAll('.goods__item-remove');
+        removeBtn.forEach(function (btn) {
+            btn.addEventListener('click', () => {
+                btn.parentElement.remove();
+                calcGoods(0);
+                calcTotal();
+            })
+        })
     }
 
 });
