@@ -82,7 +82,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function calcGoods(i) {
         const items = cartWrapper.querySelectorAll('.goods__item');
-        badge.textContent = items.length + i;
+        badge.textContent = i + items.length;
     }
 
     function calcTotal() {
