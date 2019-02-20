@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
             cartWrapper.appendChild(item);
             if (empty) {
-                empty.remove();
+                empty.style.display = 'none';
             }
 
             calcTotal();
@@ -84,6 +84,12 @@ window.addEventListener('DOMContentLoaded', () => {
     function calcGoods(i) {
         const items = cartWrapper.querySelectorAll('.goods__item');
         badge.textContent = i + items.length;
+       
+       const empty = cartWrapper.querySelector('.empty');
+        
+        if(items.length == 0) {
+            empty.style.display = 'block';
+        }
     }
 
     function calcTotal() {
