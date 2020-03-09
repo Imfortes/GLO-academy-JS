@@ -1,6 +1,6 @@
 ## GLO-academy-AliExpress
 
-echo ### https://imfortes.github.io/GLO-academy-Express/
+echo ### https://imfortes.github.io/hello-Express/
 
 18-02-2019: Реализована корзина и добавление товаров в нее.
 
